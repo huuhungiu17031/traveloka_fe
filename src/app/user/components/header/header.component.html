@@ -1,0 +1,31 @@
+<header class="header flex-item" appStickyHeader>
+    <div class="left flex-item">
+        <div class="logo">
+            <h2>Traveloka</h2>
+        </div>
+        <div class="left-header-item">Flights</div>
+        <div class="left-header-item">Hotels</div>
+        <div class="left-header-item">Holidays</div>
+        <div class="left-header-item">Buses</div>
+        <div class="left-header-item">Cruise</div>
+    </div>
+    <div class="right flex-item">
+        <div class="right-header-item">Download App</div>
+        <div class="right-header-item">Partner with Us</div>
+        <div class="right-header-item">Saved</div>
+        <div class="right-header-item">My Booking</div>
+
+        <ng-container *ngIf="isLogin; else loginButtons">
+            <div class="right-header-item">Hello {{user.email}}</div>
+        </ng-container>
+
+        <ng-template #loginButtons>
+            <div class="right-header-item">
+                <button mat-raised-button color="primary" (click)="openDialog('login')">Login</button>
+            </div>
+            <div class="right-header-item">
+                <button mat-raised-button color="accent" (click)="openDialog('register')">Register</button>
+            </div>
+        </ng-template>
+    </div>
+</header>

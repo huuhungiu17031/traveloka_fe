@@ -1,0 +1,36 @@
+header {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  padding: 20px;
+  width: 100%;
+  transition: 0.6s;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  color: white;
+}
+
+.flex-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.right-header-item {
+  margin-left: 2rem;
+}
+
+.left-header-item {
+  margin-left: 2rem;
+}
+
+header.sticky {
+  padding: 10px;
+  background-color: black;
+  color: white;
+}
+
+.logo h2 {
+  margin: 0;
+}

@@ -1,0 +1,48 @@
+nav {
+  height: var(--custom-height-1);
+  position: absolute;
+  background-image: url("../../../../assets/bg-1.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top center;
+  width: 100%;
+}
+
+.dark-layer {
+  position: relative;
+  height: var(--custom-height-1);
+  background-color: rgba(0, 0, 0, 0.6);
+  width: 100%;
+}
+
+.title-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.title,
+.small-title {
+  color: white;
+}
+
+.title {
+  font-size: 60px;
+  font-weight: bold;
+}
+
+.small-title {
+  margin-top: 1rem;
+}
+
+.search-tool-wrapper {
+  position: absolute;
+  color: white;
+  display: flex;
+  justify-content: center;
+  bottom: -35px;
+  width: 100%;
+  z-index: 100;
+}

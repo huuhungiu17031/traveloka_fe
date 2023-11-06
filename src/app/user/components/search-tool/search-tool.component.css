@@ -1,0 +1,6 @@
+.search-tool {
+  max-width: var(--container-small);
+  background-color: blue;
+  height: var(--custom-height-2);
+  padding: var(--padding-style-1);
+}

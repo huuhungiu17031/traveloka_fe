@@ -1,1 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --container-small: 1024px;
+  --custom-height-1: 40rem;
+  --custom-height-2: 5rem;
+  --padding-style-1: 1rem;
+}
+
+.container {
+  width: var(--container-small);
+}
+
+.mat-form-field {
+  width: 100%;
+}
