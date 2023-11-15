@@ -1,0 +1,29 @@
+<div class="dynamic-form">
+  <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+    <h1>{{ formName }}</h1>
+    <mat-form-field
+      class="mat-form-field"
+      *ngFor="let control of jsonFormData?.controls"
+    >
+      <input
+        *ngIf="['text', 'password', 'email', 'number'].includes(control.type)"
+        matInput
+        [placeholder]="control.label"
+        [formControlName]="control.name"
+        [type]="control.type"
+      />
+      <app-error-display
+        [control]="this.myForm.get(control.name)!"
+        [controlName]="control.label"
+      ></app-error-display>
+    </mat-form-field>
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="myForm.invalid"
+    >
+      Submit
+    </button>
+  </form>
+</div>

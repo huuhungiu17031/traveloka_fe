@@ -6,7 +6,8 @@ const REFRESH_TOKEN_ENDPOINT = 'refreshToken';
 const ACCESS_TOKEN = 'accessToken';
 const REFRESH_TOKEN = 'refreshToken';
 const PROVOKE_ENDPOINT = 'provoke';
-
+const EMAIL_LOCALSTORAGE = 'email';
+const LOCATION_ENDPOINT = 'location';
 interface HttpResponse {
   timeStamp: string;
   statusCode: number;
@@ -29,4 +30,6 @@ export {
   REFRESH_TOKEN,
   REFRESH_TOKEN_ENDPOINT,
   PROVOKE_ENDPOINT,
+  EMAIL_LOCALSTORAGE,
+  LOCATION_ENDPOINT,
 };

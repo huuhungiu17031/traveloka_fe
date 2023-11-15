@@ -1,9 +1,0 @@
-<h1 mat-dialog-title class="dialog-title">{{data.title}}</h1>
-<div mat-dialog-content>
-    <ng-container *ngIf="data.title === 'login'">
-        <app-login-form (newItemEvent)="loginAction($event)"></app-login-form>
-    </ng-container>
-    <ng-container *ngIf="data.title === 'register'">
-        <app-register-form (registerFormEvent)="registerAction($event)"></app-register-form>
-    </ng-container>
-</div>

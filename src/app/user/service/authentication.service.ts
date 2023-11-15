@@ -18,35 +18,38 @@ import { RegisterForm } from '../components/form/register-form/register-form.com
 })
 export class AuthenticationService {
   constructor(private http: HttpClient) {}
-
+  private USER: string = '/user/';
   login(loginForm: LoginForm): Observable<any> {
     return this.http
-      .post<HttpResponse>(url + '/user/' + LOGIN_ENDPOINT, loginForm)
+      .post<HttpResponse>(url + this.USER + LOGIN_ENDPOINT, loginForm)
       .pipe(map((httpResponse) => httpResponse.data));
   }
 
   register(registerForm: RegisterForm): Observable<any> {
     return this.http
-      .post<HttpResponse>(url + '/user/' + REGISTER_ENDPOINT, registerForm)
+      .post<HttpResponse>(url + this.USER + REGISTER_ENDPOINT, registerForm)
       .pipe(map((httpResponse) => httpResponse.data));
   }
 
   getUserInfor(): Observable<any> {
     return this.http
-      .get<HttpResponse>(url + '/user/' + USER_INFO_ENDPOINT)
+      .get<HttpResponse>(url + this.USER + USER_INFO_ENDPOINT)
       .pipe(map((httpResponse) => httpResponse.data));
   }
 
   refreshToken(refreshToken: string): Observable<any> {
-    return this.http.get<HttpResponse>(
-      url + '/user/' + REFRESH_TOKEN_ENDPOINT + '/' + refreshToken
+    const headers = new HttpHeaders({ 'Content-Type': 'text/plain' });
+    return this.http.post<HttpResponse>(
+      url + this.USER + REFRESH_TOKEN_ENDPOINT,
+      refreshToken,
+      { headers }
     );
   }
 
-  provokeToken(email: string = 'hh@gmail.com'): Observable<any> {
+  provokeToken(email: string | null): Observable<any> {
     const headers = new HttpHeaders({ 'Content-Type': 'text/plain' });
     return this.http.post<HttpResponse>(
-      url + '/user/' + PROVOKE_ENDPOINT,
+      url + this.USER + PROVOKE_ENDPOINT,
       email,
       { headers }
     );

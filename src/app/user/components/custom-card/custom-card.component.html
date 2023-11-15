@@ -1,0 +1,33 @@
+<mat-card class="example-card">
+  <mat-card-content class="mat-card-content">
+    <div class="left">
+      <mat-grid-list cols="4" rowHeight="1:2">
+        <div *ngFor="let tile of tiles">
+          <mat-grid-tile [colspan]="tile.cols" [rowspan]="tile.rows"
+            ><img mat-card-image [src]="tile.url"
+          /></mat-grid-tile>
+        </div>
+      </mat-grid-list>
+    </div>
+    <div class="middle">
+      <div class="hotel-name-rating">
+        <div class="hotel-name">
+          <h2>{{ hotelData.name }}</h2>
+        </div>
+        <div class="rating">
+          8.7 (453)
+          <div class="level">Impressive</div>
+        </div>
+      </div>
+      <div class="address">
+        <strong>{{ hotelData.address }}</strong>
+      </div>
+      <p>
+        {{ hotelData.description }}
+      </p>
+    </div>
+    <div class="right">
+      <button mat-raised-button color="warn" [routerLink]="['/user/hotel/details', hotelData.id]">Select Room</button>
+    </div>
+  </mat-card-content>
+</mat-card>

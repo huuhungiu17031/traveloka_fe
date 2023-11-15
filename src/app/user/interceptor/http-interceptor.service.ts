@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
 import { AuthenticationService } from '../service/authentication.service';
 import {
   ACCESS_TOKEN,
+  EMAIL_LOCALSTORAGE,
   JwtToken,
   REFRESH_TOKEN,
   REFRESH_TOKEN_ENDPOINT,
@@ -25,7 +26,10 @@ import {
 })
 export class HttpInterceptorService {
   private countUnauthorizeError: number = 0;
-  private excludedEndPoint: string[] = [USER_INFO_ENDPOINT, REFRESH_TOKEN_ENDPOINT]
+  private excludedEndPoint: string[] = [
+    USER_INFO_ENDPOINT,
+    REFRESH_TOKEN_ENDPOINT,
+  ];
   constructor(
     private cookieService: CookieService,
     private router: Router,
@@ -52,8 +56,8 @@ export class HttpInterceptorService {
       .pipe(catchError((error) => this.handleAuthError(error)));
   }
 
-  private handleAuthError(err: HttpErrorResponse): Observable<any> {
-    if (err && err.status === 401 && this.countUnauthorizeError != 1) {
+  private handleAuthError(error: HttpErrorResponse): Observable<any> {
+    if (error && error.status === 401 && this.countUnauthorizeError !== 1) {
       const refreshToken = this.cookieService.get(REFRESH_TOKEN);
       this.countUnauthorizeError++;
       this.authenticationService
@@ -68,17 +72,23 @@ export class HttpInterceptorService {
             );
           },
           error: (err: any) => {
-            this.authenticationService.provokeToken().subscribe({
-              next: (result) => {
-                this.router.navigateByUrl('/');
-              },
+            const email = localStorage.getItem(EMAIL_LOCALSTORAGE);
+            this.authenticationService.provokeToken(email).subscribe({
+              next: (result) => this.router.navigateByUrl('/'),
+              complete: () => this.handleClearLocalStorageAndCookies(),
             });
           },
         });
       return of('Attempting to Refresh Tokens');
     } else {
       this.countUnauthorizeError = 0;
-      return throwError(() => new Error('Non Authenticationn Error'));
+      return throwError(() => error);
     }
   }
+
+  handleClearLocalStorageAndCookies = () => {
+    localStorage.removeItem(EMAIL_LOCALSTORAGE);
+    this.cookieService.delete(ACCESS_TOKEN);
+    this.cookieService.delete(REFRESH_TOKEN);
+  };
 }

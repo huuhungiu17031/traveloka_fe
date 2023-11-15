@@ -1,0 +1,23 @@
+<mat-form-field class="example-full-width">
+  <mat-label>Location</mat-label>
+  <input
+    type="text"
+    placeholder="Pick one"
+    aria-label="label"
+    matInput
+    [formControl]="myControl"
+    [matAutocomplete]="auto"
+  />
+  <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+    <mat-option
+      *ngFor="let option of options"
+      [value]="option"
+      (onSelectionChange)="handleSelectionChange($event)"
+    >
+      {{ option?.name }}
+    </mat-option>
+    <mat-option *ngIf="options.length === 0" [disabled]="true">
+      There are no results for "{{ myControl.value }}"
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>

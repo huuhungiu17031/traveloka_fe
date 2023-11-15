@@ -1,1 +1,23 @@
-<p>booking-hotel works!</p>
+<div class="booking-page">
+  <div class="search-tool">
+    <app-search-tool></app-search-tool>
+  </div>
+  <div class="body">
+    <div class="left">
+      <app-list-sort></app-list-sort>
+    </div>
+    <div class="right">
+      <ng-container *ngIf="listHotel && listHotel.length > 0; else noHotels">
+        <div *ngFor="let hotel of listHotel">
+          <app-custom-card [hotelData]="hotel"></app-custom-card>
+        </div>
+      </ng-container>
+
+      <ng-template #noHotels>
+        <mat-card>
+          <mat-card-content> No hotels available. </mat-card-content>
+        </mat-card>
+      </ng-template>
+    </div>
+  </div>
+</div>

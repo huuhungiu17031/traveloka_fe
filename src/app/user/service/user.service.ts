@@ -2,16 +2,16 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 export interface UserInfo {
-  email: string | null;
-  roles: string[] | null;
+  email: string;
+  roles: string[];
 }
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
   private userInfor = new BehaviorSubject<UserInfo>({
-    email: null,
-    roles: null,
+    email: '',
+    roles: [],
   });
   currentUser = this.userInfor.asObservable();
   constructor() {}

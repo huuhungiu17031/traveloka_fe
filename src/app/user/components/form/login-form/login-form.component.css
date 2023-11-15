@@ -1,0 +1,10 @@
+.loginForm form{
+    width: var(--container-form);
+}
+
+.loginForm{
+    margin-top: 10rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

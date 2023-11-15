@@ -1,6 +1,24 @@
 .search-tool {
   max-width: var(--container-small);
-  background-color: blue;
-  height: var(--custom-height-2);
-  padding: var(--padding-style-1);
+  padding: var(--space-style-1);
+  background-color: #f5f5f5;
+  border-radius: var(--space-style-1);
+}
+
+.search-form {
+  display: flex;
+  align-items: center;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Create four columns */
+  grid-gap: 10px; /* Adjust the gap between items as needed */
+}
+
+.grid-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
 }

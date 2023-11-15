@@ -1,5 +1,10 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormService } from '../../../service/form.service';
+import { JsonFormData } from '../dynamic-form/dynamic-form.component';
+import { AuthenticationService } from 'src/app/user/service/authentication.service';
+import Swal from 'sweetalert2';
+
 export interface RegisterForm {
   email: string;
   password: string;
@@ -11,24 +16,39 @@ export interface RegisterForm {
   templateUrl: './register-form.component.html',
   styleUrls: ['./register-form.component.css'],
 })
-export class RegisterFormComponent {
-  
-  registrationForm: FormGroup;
+export class RegisterFormComponent implements OnInit {
+  registrationForm!: JsonFormData;
 
   @Output() registerFormEvent = new EventEmitter<RegisterForm>();
-  constructor(private fb: FormBuilder) {
-    this.registrationForm = this.fb.group({
-      firstName: ['', [Validators.required]],
-      lastName: ['', [Validators.required]],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-    });
+  constructor(
+    private fb: FormBuilder,
+    private formService: FormService,
+    private authenticationService: AuthenticationService
+  ) {}
+  ngOnInit(): void {
+    this.formService
+      .registerForm()
+      .subscribe((jsonFormData) => (this.registrationForm = jsonFormData));
   }
 
-  onSubmit() {
-    if (this.registrationForm.valid) {
-      const formData = this.registrationForm.value;
-      this.registerFormEvent.emit(formData);
-    }
+  onSubmit(formValue: RegisterForm) {
+    this.authenticationService.register(formValue).subscribe({
+      next: (data) => {
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Create user successfully!',
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      },
+      error: (error) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Registration Error',
+          text: 'An error occurred during registration. Please try again.',
+        });
+      },
+    });
   }
 }

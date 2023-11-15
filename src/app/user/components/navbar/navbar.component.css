@@ -1,6 +1,6 @@
 nav {
   height: var(--custom-height-1);
-  position: absolute;
+  position: relative;
   background-image: url("../../../../assets/bg-1.jpg");
   background-repeat: no-repeat;
   background-size: cover;
@@ -42,7 +42,7 @@ nav {
   color: white;
   display: flex;
   justify-content: center;
-  bottom: -35px;
+  bottom: -60px;
   width: 100%;
   z-index: 100;
 }

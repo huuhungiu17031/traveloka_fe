@@ -1,5 +1,20 @@
 <div class="search-tool">
-    <form>
-        <app-auto-complete-form></app-auto-complete-form>
-    </form>
+  <form [formGroup]="searchForm" (ngSubmit)="onSubmit()" class="search-form">
+    <div class="grid-container">
+      <div class="grid-item">
+        <app-auto-complete
+          (sendInputValue)="filterLocation($event)"
+          [options]="listLocation"
+          controlName="location"
+          label="Location"
+        ></app-auto-complete>
+      </div>
+      <div class="grid-item">
+        <app-date-picker-range></app-date-picker-range>
+      </div>
+      <div class="grid-item">
+        <button mat-raised-button color="warn" [disabled]="!searchForm.valid">Find Hotel</button>
+      </div>
+    </div>
+  </form>
 </div>

@@ -1,0 +1,42 @@
+img {
+  width: 100%;
+}
+.example-card {
+  width: 100%;
+  margin-bottom: var(--space-style-1);
+  cursor: pointer;
+}
+.mat-card-content {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: var(--space-style-1); /* Adjust the gap as needed */
+  margin: var(--space-style-1);
+}
+.left {
+  grid-column: span 3;
+}
+.middle {
+  grid-column: span 7;
+}
+.right {
+  grid-column: span 2;
+}
+.hotel-name-rating {
+  display: flex;
+  justify-content: space-between;
+  /* align-items: center; */
+}
+.hotel-name {
+  order: 1;
+}
+.rating {
+  order: 2;
+}
+.right {
+  position: relative;
+}
+.right button {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}

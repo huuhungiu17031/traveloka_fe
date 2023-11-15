@@ -1,0 +1,25 @@
+.booking-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  width: var(--container-small);
+}
+.search-tool {
+  display: flex;
+  justify-content: center;
+}
+.body {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--space-style-1); /* Adjust the gap as needed */
+  margin: var(--space-style-1);
+}
+.left {
+  grid-column: span 3;
+}
+.right {
+  grid-column: span 9;
+  width: 100%;
+}

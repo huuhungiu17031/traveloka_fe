@@ -1,0 +1,10 @@
+.dynamic-form form {
+  width: var(--container-form);
+}
+
+.dynamic-form {
+  margin-top: 10rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

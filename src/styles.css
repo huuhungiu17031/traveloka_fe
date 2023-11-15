@@ -6,10 +6,12 @@
 }
 
 :root {
-  --container-small: 1024px;
+  --container-small: 1280px;
+  --container-form: 25rem;
   --custom-height-1: 40rem;
   --custom-height-2: 5rem;
-  --padding-style-1: 1rem;
+  --space-style-1: 1rem;
+  --background-color-1: #f2f3f3;
 }
 
 .container {
